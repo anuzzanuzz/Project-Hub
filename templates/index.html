@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Project Hub — Anusree</title>
+  <meta name="description" content="Project Hub — Showcase of projects and features" />
+
+  <style>
+    :root{
+      --pink:#ff5da2;
+      --pink-2:#ff78b8;
+      --muted:#f7f3f6;
+      --text:#2b2b2b;
+      --glass: rgba(255,255,255,0.65);
+      --card-shadow: 0 8px 24px rgba(39,20,55,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial; color:var(--text);background:linear-gradient(180deg,var(--muted),#fff);}
+
+    /* NAV */
+    .nav{position:sticky;top:0;backdrop-filter: blur(6px);background:linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.5));display:flex;align-items:center;justify-content:space-between;padding:12px 18px;border-bottom:1px solid rgba(0,0,0,0.04);z-index:30}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--pink),var(--pink-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px}
+    .nav-links{display:flex;gap:14px;align-items:center}
+    .nav-links a{color:var(--text);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+    .nav-links a.cta{background:var(--pink);color:#fff}
+    .hamburger{display:none;border:0;background:transparent;font-size:20px}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:48px 18px;max-width:1100px;margin:28px auto}
+    .hero h1{font-size:34px;margin:0 0 14px}
+    .hero p{margin:0 0 18px;color:#5b5b5b}
+    .hero .actions{display:flex;gap:12px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn.primary{background:var(--pink);color:white}
+    .btn.outline{background:transparent;border:2px solid var(--pink);color:var(--pink)}
+
+    .preview-card{background:var(--glass);border-radius:16px;padding:18px;box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:12px}
+    .preview-img{height:220px;background:linear-gradient(135deg,#fff,rgba(255,255,255,0.6));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#777}
+
+    /* SECTIONS */
+    section{max-width:1100px;margin:24px auto;padding:18px}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+    .section-title h2{margin:0}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:white;border-radius:12px;padding:16px;box-shadow:var(--card-shadow)}
+    .feature-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+    .feature-list li{display:flex;gap:12px;align-items:flex-start}
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--pink);margin-top:6px}
+
+    /* CONTACT / UPLOAD / PROJECTS */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea,select{padding:10px;border-radius:8px;border:1px solid #e8e1e6;font-size:14px}
+    textarea{resize:vertical;min-height:120px}
+
+    #upload-msg{color:var(--pink);font-weight:700;margin-top:8px}
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:12px}
+    .project-card{background:white;border-radius:12px;padding:12px;box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:10px}
+    .project-card .meta{font-size:13px;color:#666}
+
+    footer{padding:18px;text-align:center;color:#6b6b6b}
+
+    /* RESPONSIVE */
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:640px){
+      .nav-links{display:none}
+      .hamburger{display:block}
+      .grid{grid-template-columns:1fr}
+      .preview-img{height:160px}
+      .projects-grid{grid-template-columns:1fr}
+      .hero{padding:28px 12px}
+      section{padding:12px}
+    }
+
+    /* small helpers */
+    .muted{color:#6b6b6b}
+    .row{display:flex;gap:12px;align-items:center}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#fff9;
+      border:1px solid rgba(0,0,0,0.03);font-weight:600}
+  </style>
+</head>
+<body>
+
+  <header class="nav" role="banner">
+    <div class="brand">
+      <div class="logo">PH</div>
+      <div>
+        <div style="font-weight:800;">Project Hub</div>
+        <div style="font-size:12px;color:#7b7b7b">Showcase • Share • Ship</div>
+      </div>
+    </div>
+
+    <nav class="nav-links" role="navigation" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#projects">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a class="cta" href="#github">GitHub</a>
+    </nav>
+
+    <button class="hamburger" aria-label="Open menu">☰</button>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div>
+        <div class="pill">Project Hub</div>
+        <h1>Welcome to <span style="color:var(--pink)">Project Hub</span></h1>
+        <p class="muted">A clean, minimal project website to showcase your work — features, tech stack, screenshots and a link to GitHub. Built for students and creators.</p>
+
+        <div class="actions">
+          <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+          <a class="btn outline" href="#github">View on GitHub</a>
+        </div>
+
+        <div style="margin-top:18px;color:#5b5b5b">Quick highlights:</div>
+        <ul style="color:#5b5b5b;margin-top:8px">
+          <li>Responsive single-file template</li>
+          <li>Pink + White aesthetic</li>
+          <li>Easy to edit and deploy</li>
+        </ul>
+      </div>
+
+      <aside class="preview-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-weight:800">Project Hub</div>
+            <div style="font-size:13px;color:#6b6b6b">A simple platform to upload and view student projects.</div>
+          </div>
+          <div class="pill">Prototype</div>
+        </div>
+
+        <div class="preview-img">Screenshot / Demo Preview</div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="muted">Tech: Python • Flask • JSON</div>
+          <div style="font-size:12px">⭐ 4.8</div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <div class="section-title"><h2>About Project</h2></div>
+      <div class="card">
+        <p><strong>Project Hub</strong> is a place to present projects — their goals, design, technologies and demos.</p>
+        <p class="muted">Project Hub is a simple, powerful space where students and creators can upload and share their projects. Our mission is to make project sharing effortless — showcase your ideas, learn from others, and collaborate.</p>
+
+        <hr style="margin:20px 0; border:0; border-top:1px solid #eee;">
+
+        <h3 style="margin-top:10px;">Upload Your Project</h3>
+        <p class="muted">Submit your project details here. Anyone can upload their project.</p>
+
+        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:12px;margin-top:14px">
+          <input type="text" name="title" placeholder="Project Title" required />
+          <textarea name="description" placeholder="Write a short description..." required></textarea>
+
+          <select name="category" required>
+            <option value="" disabled selected>Select Category</option>
+            <option>AI</option>
+            <option>Machine Learning</option>
+            <option>Web Development</option>
+            <option>Mobile App</option>
+            <option>IoT</option>
+            <option>Cybersecurity</option>
+            <option>Embedded System</option>
+          </select>
+
+          <input type="file" name="file" required />
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+            <input name="github_link" type="url" placeholder="Optional: GitHub repo link" style="padding:10px;border-radius:8px;border:1px solid #e8e1e6;flex:1" />
+            <button class="btn primary" type="submit" style="width:180px">Upload Project</button>
+          </div>
+
+          <div id="upload-msg"></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-title"><h2>Features</h2></div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Easy Upload</h3>
+          <p class="muted">Upload title, description, category and project file in one step.</p>
+        </div>
+
+        <div class="card">
+          <h3>Project Gallery</h3>
+          <p class="muted">View and download uploaded projects from the gallery.</p>
+        </div>
+
+        <div class="card">
+          <h3>Lightweight</h3>
+          <p class="muted">No database required — project details stored in a JSON file.</p>
+        </div>
+
+        <div class="card">
+          <h3>Shareable</h3>
+          <p class="muted">Host this app and share link for others to upload and view work.</p>
+        </div>
+
+        <div class="card">
+          <h3>Extensible</h3>
+          <p class="muted">Easily add filters, admin, or switch to a DB later.</p>
+        </div>
+
+        <div class="card">
+          <h3>Responsive</h3>
+          <p class="muted">Works well on mobile and desktop.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title"><h2>Project Gallery</h2></div>
+
+      <div id="projectsGrid" class="projects-grid">
+        <!-- Project cards will be injected here by JS -->
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title"><h2>Contact</h2></div>
+
+      <div class="contact-grid">
+        <div>
+          <div class="card">
+            <h3>Get in touch</h3>
+            <p class="muted">Have feedback or want to collaborate? Send a message and I will get back to you.</p>
+            <form id="contactForm" onsubmit="submitContact(event)">
+              <input id="name" type="text" placeholder="Your name" required />
+              <input id="email" type="email" placeholder="Your email" required />
+              <input id="subject" type="text" placeholder="Subject" />
+              <textarea id="message" placeholder="Message..." required></textarea>
+              <div style="display:flex;gap:10px">
+                <button class="btn primary" type="submit">Send Message</button>
+                <button class="btn" type="reset">Reset</button>
+              </div>
+              <div id="formMsg" style="margin-top:8px;color:var(--pink)"></div>
+            </form>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:12px">
+            <div class="card" style="flex:1">
+              <strong>Email</strong>
+              <div class="muted">youremail@example.com</div>
+            </div>
+            <div class="card" style="flex:1">
+              <strong>Location</strong>
+              <div class="muted">Forest area, India</div>
+            </div>
+          </div>
+        </div>
+
+        <aside id="github" class="card">
+          <h3>GitHub Link</h3>
+          <p class="muted">Host your project code, demo instructions and sample data here.</p>
+          <a class="btn primary" href="https://github.com/yourusername/your-repo" target="_blank" rel="noopener">Open on GitHub</a>
+
+          <div style="margin-top:14px">
+            <strong>Quick setup</strong>
+            <ol style="margin:8px 0 0 18px;color:#5b5b5b">
+              <li>Clone repo</li>
+              <li>Install requirements</li>
+              <li>Run python app.py for demo</li>
+            </ol>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>Made with ❤ by Anusree • Project Hub</div>
+    <!-- <div style="font-size:12px;margin-top:8px" class="muted">Tip: Edit the index.html file to replace text, screenshots and the GitHub link.</div> -->
+  </footer>
+
+  <script>
+    // small interaction scripts
+    document.querySelector('.hamburger').addEventListener('click', function(){
+      const nav = document.querySelector('.nav-links');
+      if(nav.style.display === 'flex') nav.style.display = '';
+      else nav.style.display = 'flex';
+    });
+
+    // smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          const el = document.querySelector(href);
+          if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+    // CONTACT form (unchanged)
+    function submitContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const msgBox = document.getElementById('formMsg');
+
+      if(!name || !email || !message){
+        msgBox.textContent = 'Please fill all required fields.';
+        return;
+      }
+
+      // This demo does not send emails. Show success message.
+      msgBox.textContent = 'Thanks ' + (name.split(' ')[0] || '') + '! Message received (demo).';
+      e.target.reset();
+    }
+
+    // UPLOAD form AJAX
+    const uploadForm = document.getElementById('uploadForm');
+    uploadForm.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const msg = document.getElementById('upload-msg');
+      msg.textContent = 'Uploading...';
+
+      const formData = new FormData(uploadForm);
+      const res = await fetch('/upload', {
+        method: 'POST',
+        body: formData
+      });
+
+      const text = await res.text();
+      if(res.ok){
+        msg.textContent = 'Uploaded ✓';
+        uploadForm.reset();
+        loadProjects(); // refresh gallery
+      } else {
+        msg.textContent = 'Error: ' + text;
+      }
+    });
+
+    // Load projects and render gallery
+    async function loadProjects(){
+      const grid = document.getElementById('projectsGrid');
+      grid.innerHTML = '<div style="grid-column:1/-1;color:#777">Loading...</div>';
+      try {
+        const res = await fetch('/projects_json');
+        const projects = await res.json();
+        if(!projects.length){
+          grid.innerHTML = '<div style="grid-column:1/-1;color:#777">No projects uploaded yet.</div>';
+          return;
+        }
+
+        grid.innerHTML = '';
+        projects.reverse().forEach(p => {
+          const card = document.createElement('div');
+          card.className = 'project-card';
+          card.innerHTML = `
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <strong>${escapeHtml(p.title)}</strong>
+              <span class="muted">${escapeHtml(p.category)}</span>
+            </div>
+            <div class="meta">${escapeHtml(p.description)}</div>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <a href="/uploads/${encodeURIComponent(p.file)}" download class="btn outline" style="padding:8px 10px">Download</a>
+              ${p.github_link ? <a href="${escapeAttr(p.github_link)}" target="_blank" class="btn outline" style="padding:8px 10px">GitHub</a> : ''}
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      } catch (err){
+        grid.innerHTML = '<div style="grid-column:1/-1;color:#c00">Failed to load projects.</div>';
+      }
+    }
+
+    // small helpers to escape
+    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+    function escapeAttr(s){ return escapeHtml(s).replace(/"/g,'%22'); }
+
+    // initial load
+    loadProjects();
+  </script>
+
+</body>
+</html>
