@@ -1,12 +1,2 @@
-# Requirements for Project Hub (Flask demo)
-# Pinning minimal, recent versions tested on Python 3.11/3.12
-Flask==2.3.4
-Werkzeug==2.3.6
-Jinja2==3.1.2
-itsdangerous==2.1.2
-click==8.1.7
-python-dotenv==1.0.0
 
-# Optional (for production WSGI servers). Not required for local dev on Windows:
-# gunicorn==20.1.0
 
